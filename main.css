@@ -13,3 +13,10 @@
 	margin-bottom: 0;
 }
 
+.noMargin {
+	margin: 0px;
+}
+
+.noPadding {
+	padding: 0px;
+}

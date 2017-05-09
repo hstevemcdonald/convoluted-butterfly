@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-  <link rel="stylesheet" href="main.css">
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body class="fullHeight">
 	<div class="row fullHeight"> 
@@ -19,60 +14,89 @@
 				<div class="col s9 noPadding">
 					<span class="grey-text lighten-text-2">Score</span>
 				</div>
-				<div class="col s3 noPadding">
-					<h5 class="orange-text darken-text-2 noMargin">252</h5>
+				<div class="col s3 noPadding right-align">
+					<h5 class="orange-text darken-text-2 noMargin" id="score">0</h5>
 				</div>
 			</div>
 			<div class="divider"></div>
+            <div class="row noMargin">
+                <div class="col s9 noPadding">
+                    <span class="grey-text lighten-text-2">Words</span>
+                </div>
+                <div class="col s3 noPadding right-align">
+                </div>
+            </div>
+            <div class="row"></div>
+            <div id="wordList">
+            <div class="row noMargin hide wordAndScoreRow">
+                <div class="col s9 noPadding">
+                    <h6 class="word"></h6>
+                </div>
+                <div class="col s3 noPadding right-align">
+                    <label class="white-text orange labelPadding wordScore"></label>
+                </div>
+            </div>
+            </div>
+                <div id="codeLink"><a target = "_blank" href="https://github.com/eastnorthwest/convoluted-butterfly"> See the code</a></div>
 		</div>
 		<div class="col s9 fullHeight" id="right">
 			<div id="rightColumns">
-				<div class="row col s12"> </div>
+                <div class="row col s12"></div>
 				<div class="row">
 					<div class="col s2"></div>
-					<div class="col s8 center-align">Code</div>
-					<div class="col s2"><button class="btn light-green">Submit</button><br/><button class="btn red">Clear</button></div>
+					<div class="col s8 center-align"><h2 id="playWord"></h2></div>
+                    <div class="col s2"><button class="btn light-green controls" id="submit">Submit</button><br/><button class="btn red controls" id="clear">Clear</button></div>
+                </div>
 				<div class="row">
 					<div class="col s2"></div>
-					<div class="col s8  center-align red">	
-						<div>			
-						<div class="row centeringSquares"> 
-							<div class="col square yellow valign-wrapper center-align" >S</div>
-							<div class="col square yellow valign-wrapper center-align">D</div>
-							<div class="col square yellow valign-wrapper center-align">L</div>
-							<div class="col square yellow valign-wrapper center-align">G</div>
-						</div>
-						<div class="row centeringSquares"> 
-							<div class="col square yellow valign-wrapper center-align" >S</div>
-							<div class="col square yellow valign-wrapper center-align">D</div>
-							<div class="col square yellow valign-wrapper center-align">L</div>
-							<div class="col square yellow valign-wrapper center-align">G</div>
-						</div>
-						<div class="row centeringSquares"> 
-							<div class="col square yellow valign-wrapper center-align" >S</div>
-							<div class="col square yellow valign-wrapper center-align">D</div>
-							<div class="col square yellow valign-wrapper center-align">L</div>
-							<div class="col square yellow valign-wrapper center-align">G</div>
-						</div>	
-						<div class="row centeringSquares"> 
-							<div class="col square yellow valign-wrapper center-align" >S</div>
-							<div class="col square yellow valign-wrapper center-align">D</div>
-							<div class="col square yellow valign-wrapper center-align">L</div>
-							<div class="col square yellow valign-wrapper center-align">G</div>
-						</div>	
-						</div>											
+					<div class="col s8  center-align">
+						<div>
+                            <div class="row centeringSquares">
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                            </div>
+                            <div class="row centeringSquares">
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                            </div>
+                            <div class="row centeringSquares">
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                            </div>
+                            <div class="row centeringSquares">
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                            </div>
+                        </div>
 					</div>
 					<div class="col s2"></div>
 				</div>
 				<div class="row">
 					<div class="col s2"></div>
-					<div class="col s8 right-align"><button class="btn black">Reset</button></div>
+					<div class="col s8 right-align"><button class="btn black" id="reset">Reset</button></div>
 					<div class="col s2"></div>
 				</div>
 
-				</div>
-			</div>
-		</div>	
-	</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script src="functions.js"></script>
+    <script src="bossggle.js"></script>
 </body>
 </html>

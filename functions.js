@@ -1,3 +1,5 @@
+var points = 0;
+
 /**
  * Functions for Bossggle
  */
@@ -50,5 +52,13 @@ function setupListeners()
             playWordEl.innerText = playWord
         }
     }
+}
+
+var givePoints = function() {
+    var playWordPoints = 0;
+    playWordPoints = 9 * playWord.length;
+    $("#wordScore").html(playWordPoints);
+    points += playWordPoints;
+    $("#score").html(points);
 }
 

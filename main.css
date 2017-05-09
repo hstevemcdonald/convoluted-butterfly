@@ -17,6 +17,11 @@
 	margin: 0px;
 }
 
-.noPadding {
+.col .noPadding {
 	padding: 0px;
+}
+
+.labelPadding {
+	padding: 6px;
+	border-radius: 4px;
 }

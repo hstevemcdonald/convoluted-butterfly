@@ -1,4 +1,5 @@
 var points = 0;
+var playWordPoints = 0;
 
 /**
  * Functions for Bossggle
@@ -27,20 +28,6 @@ function setupLetters()
         used[letter] = 1;
         blocks[idx].innerText = letter;
     }
-
-    var elements = document.getElementsByClassName("letter");
-    for (var idx = 0 ;idx < elements.length; idx++)
-    {
-        var el = elements[idx];
-        el.parentNode.classList.remove("orange");
-        el.parentNode.classList.add("yellow");
-    }
-
-    var playWordEl = document.getElementById("playWord");
-    playWordEl.innerText = "";
-
-    console.log(used)
-
 }
 
 // listen and update word in play
@@ -65,11 +52,38 @@ function setupListeners()
     }
 }
 
+function clearWord() {
+    var elements = document.getElementsByClassName("letter");
+    for (var idx = 0 ;idx < elements.length; idx++)
+    {
+        var el = elements[idx];
+        el.parentNode.classList.remove("orange");
+        el.parentNode.classList.add("yellow");
+    }
+    var playWordEl = document.getElementById("playWord");
+    playWordEl.innerText = "";
+
+}
+
 var givePoints = function() {
-    var playWordPoints = 0;
     playWordPoints = 9 * playWord.length;
-    $("#wordScore").html(playWordPoints);
     points += playWordPoints;
     $("#score").html(points);
+}
+
+var addWord = function() {
+    //clone row
+    //add current word to word column and score to score column - 1 row
+    //prepend these
+    //show
+    var element = $(".wordAndScoreRow:last").clone();
+    element.removeClass("hide");
+    element.find(".word").html(playWord);
+    element.find(".wordScore").html(playWordPoints);
+    $("#wordList").prepend(element);
+
+
+        //$(".wordScore").html(playWordPoints);
+
 }
 

@@ -9,17 +9,19 @@ setupListeners();
 $(document).ready(function() {
 	$("#submit").on("click", function() {
 		givePoints();
+		addWord();
 		playWord = ""
+		clearWord();
+
 	});
 	$("#clear").on("click", function() {
 		playWord = "";
-        $("#playWord").text('');
-		//clear the letters to be original color;
+		clearWord();
 	});
 	$("#reset").on("click", function() {
 		playWord = "";
-		//clear the letters to be original colot;
 		setupLetters();
+		clearWord();
 	});
 });
 

@@ -38,3 +38,12 @@
 .mouseOver {
 	cursor: pointer;
 }
+
+.hide {
+	display: none;
+}
+
+#codeLink {
+	position: absolute;
+	bottom: 30px;
+}

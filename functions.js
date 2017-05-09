@@ -28,6 +28,17 @@ function setupLetters()
         blocks[idx].innerText = letter;
     }
 
+    var elements = document.getElementsByClassName("letter");
+    for (var idx = 0 ;idx < elements.length; idx++)
+    {
+        var el = elements[idx];
+        el.parentNode.classList.remove("orange");
+        el.parentNode.classList.add("yellow");
+    }
+
+    var playWordEl = document.getElementById("playWord");
+    playWordEl.innerText = "";
+
     console.log(used)
 
 }

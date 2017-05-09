@@ -13,6 +13,7 @@ $(document).ready(function() {
 	});
 	$("#clear").on("click", function() {
 		playWord = "";
+        $("#playWord").text('');
 		//clear the letters to be original color;
 	});
 	$("#reset").on("click", function() {

@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-  <link rel="stylesheet" href="main.css">
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body class="fullHeight">
 	<div class="row fullHeight"> 
@@ -51,42 +46,41 @@
 		</div>
 		<div class="col s9 fullHeight" id="right">
 			<div id="rightColumns">
-                <div class="row col s12"> </div>
+                <div class="row col s12"></div>
 				<div class="row">
 					<div class="col s2"></div>
-					<div class="col s8 center-align"><h2>Code</h2></div>
-                    <div class="col s2"><button class="btn light-green">Submit</button><br/><button class="btn red">Clear</button></div>
+					<div class="col s8 center-align"><h2 id="playWord"></h2></div>
+                    <div class="col s2"><button class="btn light-green controls">Submit</button><br/><button class="btn red controls">Clear</button></div>
                 </div>
 				<div class="row">
 					<div class="col s2"></div>
 					<div class="col s8  center-align">
 						<div>
-
                             <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
                             </div>
                             <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
                             </div>
                             <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
                             </div>
                             <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
-                                <div class="col square yellow valign-wrapper center-align"><div class="center-block">S</div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
+                                <div class="col square yellow valign-wrapper"><div class="center-block letter mouseOver"></div></div>
                             </div>
-						</div>											
+                        </div>
 					</div>
 					<div class="col s2"></div>
 				</div>
@@ -99,5 +93,15 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript -->
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script src="functions.js"></script>
+    <script src="bossggle.js"></script>
 </body>
 </html>

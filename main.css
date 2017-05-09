@@ -4,6 +4,15 @@
 	margin: .3em;
 }
 
+.controls {
+    margin-bottom: 10px;
+}
+
+.letter {
+	font-size: 2em;
+	font-weight: bold;
+}
+
 .fullHeight {
 	height: 100vh;
 }
@@ -24,4 +33,8 @@
 .labelPadding {
 	padding: 6px;
 	border-radius: 4px;
+}
+
+.mouseOver {
+	cursor: pointer;
 }

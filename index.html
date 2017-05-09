@@ -7,7 +7,10 @@
 
 
   <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <script src="bossggle.js"></script>
+  <script src="functions.js"></script>
 
 </head>
 <body class="fullHeight">
@@ -20,7 +23,7 @@
 					<span class="grey-text lighten-text-2">Score</span>
 				</div>
 				<div class="col s3 noPadding right-align">
-					<h5 class="orange-text darken-text-2 noMargin">252</h5>
+					<h5 class="orange-text darken-text-2 noMargin" id="score">0</h5>
 				</div>
 			</div>
 			<div class="divider"></div>
@@ -37,7 +40,7 @@
                     <h6 class="">APPLES</h6>
                 </div>
                 <div class="col s3 noPadding right-align">
-                    <label class="white-text orange labelPadding">45</label>
+                    <label class="white-text orange labelPadding" id="wordScore"></label>
                 </div>
             </div>
             <div class="row noMargin">
@@ -55,7 +58,7 @@
 				<div class="row">
 					<div class="col s2"></div>
 					<div class="col s8 center-align"><h2>Code</h2></div>
-                    <div class="col s2"><button class="btn light-green">Submit</button><br/><button class="btn red">Clear</button></div>
+                    <div class="col s2"><button class="btn light-green" id="submit">Submit</button><br/><button class="btn red" id="clear">Clear</button></div>
                 </div>
 				<div class="row">
 					<div class="col s2"></div>
@@ -92,7 +95,7 @@
 				</div>
 				<div class="row">
 					<div class="col s2"></div>
-					<div class="col s8 right-align"><button class="btn black">Reset</button></div>
+					<div class="col s8 right-align"><button class="btn black" id="reset">Reset</button></div>
 					<div class="col s2"></div>
 				</div>
 

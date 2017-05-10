@@ -8,21 +8,41 @@ setupListeners();
 
 $(document).ready(function() {
 	$("#submit").on("click", function() {
-		givePoints();
-		addWord();
-		playWord = ""
-		clearWord();
-
+		//playWord = playWord.toLowerCase();
+		if  (playWord.length < 3) {
+			Materialize.toast("Your word must have at least 3 letters", 3000);
+			clearWord();		
+		} else if (!Word_List.isInList(playWord)) {
+			Materialize.toast("That's not a word we know :-(, try again!", 3000);
+		} else {
+			givePoints();
+			addWord();
+			clearWord();
+		}
 	});
 	$("#clear").on("click", function() {
-		playWord = "";
 		clearWord();
 	});
 	$("#reset").on("click", function() {
-		playWord = "";
-		setupLetters();
+		setupLetters(true);
 		clearWord();
-	});
+    });
+
+	// start button
+	$("#startButton").on("click", function() {
+		$("#rightColumnStart").hide();
+		$("#rightColumnGame").hide().removeClass("hide").fadeIn("slow");
+        startTimer();
+	})
+
+	// play again
+    $("#reStartButton").on("click", function() {
+        $("#rightColumnTimeUp").hide();
+        $("#rightColumnGame").hide().removeClass("hide").fadeIn("slow");
+        setupLetters();
+        clearWord();
+        startTimer();
+    })
 });
 
 console.log(playWord);

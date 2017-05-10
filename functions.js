@@ -1,5 +1,7 @@
 var points = 0;
 var playWordPoints = 0;
+var timeLeft = 60;
+var timer;
 
 /**
  * Functions for Bossggle
@@ -12,7 +14,7 @@ function getLetter()
 }
 
 // setup letter grid
-function setupLetters()
+function setupLetters(disableReset)
 {
     var used = [];
     var str = "";
@@ -27,6 +29,13 @@ function setupLetters()
         }
         used[letter] = 1;
         blocks[idx].innerText = letter;
+    }
+
+    // clear game
+    if (!disableReset)
+    {
+        $(".wordAndScoreRow:not(:last)").remove();
+        $("#score").text(0);
     }
 }
 
@@ -62,6 +71,8 @@ function clearWord() {
     }
     var playWordEl = document.getElementById("playWord");
     playWordEl.innerText = "";
+    playWord = "";
+
 
 }
 
@@ -81,9 +92,31 @@ var addWord = function() {
     element.find(".word").html(playWord);
     element.find(".wordScore").html(playWordPoints);
     $("#wordList").prepend(element);
+}
 
+// start/restart timer
 
-        //$(".wordScore").html(playWordPoints);
+function startTimer()
+{
+    if (timer)
+    {
+        timer.cancel();
+    }
+    timer = setInterval(function()
+    {
+        timeLeft --;
+        showTime(timeLeft);
+        if (timeLeft == 0)
+        {
+            $("#scoreResult").text(points);
+            $("#rightColumnGame").fadeOut("slow");
+            $("#rightColumnTimeUp").removeClass("hide").fadeIn("slow");
+        }
+    }, 1000)
+}
 
+function showTime(t)
+{
+    $("#timerTime").html(moment(t, "ss").format("m:ss"));
 }
 

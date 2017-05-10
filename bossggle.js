@@ -24,9 +24,25 @@ $(document).ready(function() {
 		clearWord();
 	});
 	$("#reset").on("click", function() {
-		setupLetters();
+		setupLetters(true);
 		clearWord();
-	});
+    });
+
+	// start button
+	$("#startButton").on("click", function() {
+		$("#rightColumnStart").hide();
+		$("#rightColumnGame").hide().removeClass("hide").fadeIn("slow");
+        startTimer();
+	})
+
+	// play again
+    $("#reStartButton").on("click", function() {
+        $("#rightColumnTimeUp").hide();
+        $("#rightColumnGame").hide().removeClass("hide").fadeIn("slow");
+        setupLetters();
+        clearWord();
+        startTimer();
+    })
 });
 
 console.log(playWord);

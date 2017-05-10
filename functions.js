@@ -1,6 +1,6 @@
 var points = 0;
 var playWordPoints = 0;
-var timeLeft = 60;
+var timeLeft = 15;
 var timer;
 
 /**
@@ -100,7 +100,7 @@ function startTimer()
 {
     if (timer)
     {
-        timer.cancel();
+        clearInterval(timer);
     }
     timer = setInterval(function()
     {
@@ -108,7 +108,7 @@ function startTimer()
         showTime(timeLeft);
         if (timeLeft == 0)
         {
-            timer.cancel();
+            clearInterval(timer);
             $("#scoreResult").text(points);
             $("#rightColumnGame").fadeOut("slow");
             $("#rightColumnTimeUp").removeClass("hide").fadeIn("slow");

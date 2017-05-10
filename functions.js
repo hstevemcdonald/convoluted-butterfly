@@ -1,7 +1,8 @@
 var points = 0;
 var playWordPoints = 0;
-var timeLeft = 15;
+var timeLeft = 60;
 var timer;
+var maxWordLength = 10;
 
 /**
  * Functions for Bossggle
@@ -42,22 +43,58 @@ function setupLetters(disableReset)
 // listen and update word in play
 function setupListeners()
 {
-    var elements = document.getElementsByClassName("letter");
+    var elements = document.getElementsByClassName("letterHolder");
+    var innerElements = document.getElementsByClassName("innerLetterHolder");
     for (var idx = 0 ;idx < elements.length; idx++)
     {
         var o = elements[idx];
+        var io = innerElements[idx];
+
         o.onclick = function(event)
+        {
+            var el = event.target || event.srcElement;
+            var letter = el.firstChild.innerText.replace(/[^\x00-\x7F]/g, "");
+
+            if (checkLen(playWord))
+            {
+                el.classList.remove("yellow");
+                el.classList.add("orange");
+                setLetter(letter);
+            }
+        }
+
+        io.onclick = function(event)
         {
             var el = event.target || event.srcElement;
             var letter = el.innerText.replace(/[^\x00-\x7F]/g, "");
 
-            el.parentNode.classList.remove("yellow");
-            el.parentNode.classList.add("orange");
-
-            playWord += letter;
-            var playWordEl = document.getElementById("playWord");
-            playWordEl.innerText = playWord
+            if (checkLen(playWord))
+            {
+                el.parentNode.classList.remove("yellow");
+                el.parentNode.classList.add("orange");
+                setLetter(letter);
+            }
         }
+    }
+
+    // set letter
+    function setLetter(letter)
+    {
+        playWord += letter;
+        var playWordEl = document.getElementById("playWord");
+        playWordEl.innerText = playWord;
+    }
+
+    // check length
+    function checkLen(word)
+    {
+        var result = true;
+        if (word && word.length >= maxWordLength)
+        {
+            Materialize.toast("Words can only be 10 letters in length.", 3000);
+            result = false;
+        }
+        return result;
     }
 }
 

@@ -8,11 +8,11 @@ setupListeners();
 
 $(document).ready(function() {
 	$("#submit").on("click", function() {
-		playWord = playWord.toLowerCase();
+		//playWord = playWord.toLowerCase();
 		if  (playWord.length < 3) {
 			Materialize.toast("Your word must have at least 3 letters", 3000);
 			clearWord();		
-		} else if (!isBasicWord(playWord)) {
+		} else if (!Word_List.isInList(playWord)) {
 			Materialize.toast("That's not a word we know :-(, try again!", 3000);
 		} else {
 			givePoints();

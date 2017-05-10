@@ -1,6 +1,6 @@
 var points = 0;
 var playWordPoints = 0;
-var timeLeft = 0;
+var timeLeft = 60;
 var timer;
 
 /**
@@ -98,7 +98,6 @@ var addWord = function() {
 
 function startTimer()
 {
-    timeLeft = 20;
     if (timer)
     {
         timer.cancel();

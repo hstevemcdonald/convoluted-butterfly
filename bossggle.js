@@ -8,18 +8,22 @@ setupListeners();
 
 $(document).ready(function() {
 	$("#submit").on("click", function() {
-		givePoints();
-		addWord();
-		playWord = ""
-		clearWord();
-
+		playWord = playWord.toLowerCase();
+		if  (playWord.length < 3) {
+			Materialize.toast("Your word must have at least 3 letters", 3000);
+			clearWord();		
+		} else if (!isBasicWord(playWord)) {
+			Materialize.toast("That's not a word we know :-(, try again!", 3000);
+		} else {
+			givePoints();
+			addWord();
+			clearWord();
+		}
 	});
 	$("#clear").on("click", function() {
-		playWord = "";
 		clearWord();
 	});
 	$("#reset").on("click", function() {
-		playWord = "";
 		setupLetters();
 		clearWord();
 	});

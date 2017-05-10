@@ -62,6 +62,8 @@ function clearWord() {
     }
     var playWordEl = document.getElementById("playWord");
     playWordEl.innerText = "";
+    playWord = "";
+
 
 }
 
@@ -81,9 +83,5 @@ var addWord = function() {
     element.find(".word").html(playWord);
     element.find(".wordScore").html(playWordPoints);
     $("#wordList").prepend(element);
-
-
-        //$(".wordScore").html(playWordPoints);
-
 }
 

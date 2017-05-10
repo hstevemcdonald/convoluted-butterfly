@@ -108,6 +108,7 @@ function startTimer()
         showTime(timeLeft);
         if (timeLeft == 0)
         {
+            timer.cancel();
             $("#scoreResult").text(points);
             $("#rightColumnGame").fadeOut("slow");
             $("#rightColumnTimeUp").removeClass("hide").fadeIn("slow");

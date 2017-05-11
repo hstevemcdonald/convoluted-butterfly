@@ -6,28 +6,28 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body class="fullHeight">
-	<div class="row fullHeight"> 
-		<div class="col s3 grey lighten-4 fullHeight" id="left">
-		<h2>Bossggle</h2>
-		<p class="grey-text lighten-text-1">Make words by clicking the letters! Only dictionary words count.</p>
-			<div class="row noMargin">
-				<div class="col s9 noPadding">
-					<span class="grey-text lighten-text-2">Score</span>
-				</div>
-				<div class="col s3 noPadding right-align">
-					<h5 class="orange-text darken-text-2 noMargin" id="score">0</h5>
-				</div>
-			</div>
-			<div class="divider"></div>
-            <div class="row noMargin">
-                <div class="col s9 noPadding">
-                    <span class="grey-text lighten-text-2">Words</span>
-                </div>
-                <div class="col s3 noPadding right-align">
-                </div>
+<div class="row fullHeight">
+    <div class="col s3 grey lighten-4 fullHeight" id="left">
+        <h2>Bossggle</h2>
+        <p class="grey-text lighten-text-1">Make words by clicking the letters! Only dictionary words count.</p>
+        <div class="row noMargin">
+            <div class="col s9 noPadding">
+                <span class="grey-text lighten-text-2">Score</span>
             </div>
-            <div class="row"></div>
-            <div id="wordList">
+            <div class="col s3 noPadding right-align">
+                <h5 class="orange-text darken-text-2 noMargin" id="score">0</h5>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row noMargin">
+            <div class="col s9 noPadding">
+                <span class="grey-text lighten-text-2">Words</span>
+            </div>
+            <div class="col s3 noPadding right-align">
+            </div>
+        </div>
+        <div class="row"></div>
+        <div id="wordList">
             <div class="row noMargin hide wordAndScoreRow">
                 <div class="col s9 noPadding">
                     <h6 class="word"></h6>
@@ -36,90 +36,130 @@
                     <label class="white-text orange labelPadding wordScore"></label>
                 </div>
             </div>
-            </div>
-                <div id="codeLink"><a target = "_blank" href="https://github.com/eastnorthwest/convoluted-butterfly"> See the code</a></div>
-		</div>
-		<div class="col s9 fullHeight" id="right">
-            <div id="rightColumnStart" class="valign-wrapper fullHeight">
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button id="startButton" class="btn white-text green">START!</button>
-                    </div>
+        </div>
+        <div id="codeLink"><a target="_blank" href="https://github.com/eastnorthwest/convoluted-butterfly"> See the
+            code</a></div>
+    </div>
+    <div class="col s9 fullHeight" id="right">
+        <div id="rightColumnStart" class="valign-wrapper fullHeight">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button id="startButton" class="btn white-text green">START!</button>
                 </div>
-            </div>
-            <div id="rightColumnTimeUp" class="valign-wrapper fullHeight hide">
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <h4 class="blue-text">Time's up!</h4>
-                        <h5 class="blue-text">Your score is <span id="scoreResult"></span></h5>
-                        <button id="reStartButton" class="btn white-text green">PLAY AGAIN!</button>
-                    </div>
-                </div>
-            </div>
-            <div id="rightColumnGame" class="hide">
-                <div class="row col s12"></div>
-				<div class="row">
-					<div class="col s2"><h4 id="timerTime"></h4></div>
-					<div class="col s8 center-align"><h2 id="playWord"></h2></div>
-                    <div class="col s2"><button class="btn light-green controls" id="submit">Submit</button><br/><button class="btn red controls" id="clear">Clear</button></div>
-                </div>
-				<div class="row">
-					<div class="col s2"></div>
-					<div class="col s8  center-align">
-						<div>
-                            <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                            </div>
-                            <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                            </div>
-                            <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                            </div>
-                            <div class="row centeringSquares">
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                                <div class="col square yellow valign-wrapper letterHolder mouseOver"><div class="center-block letter innerLetterHolder"></div></div>
-                            </div>
-                        </div>
-					</div>
-					<div class="col s2"></div>
-				</div>
-				<div class="row">
-					<div class="col s2"></div>
-					<div class="col s8 right-align"><button class="btn black" id="reset">SHUFFLE</button></div>
-					<div class="col s2"></div>
-				</div>
-
             </div>
         </div>
+        <div id="rightColumnTimeUp" class="valign-wrapper fullHeight hide">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h4 class="blue-text">Time's up!</h4>
+                    <h5 class="blue-text">Your score is <span id="scoreResult"></span></h5>
+                    <button id="reStartButton" class="btn white-text green">PLAY AGAIN!</button>
+                </div>
+            </div>
+        </div>
+        <div id="rightColumnGame" class="hide">
+            <div class="row col s12"></div>
+            <div class="row">
+                <div class="col s2"><h4 id="timerTime"></h4></div>
+                <div class="col s8 center-align"><h2 id="playWord"></h2></div>
+                <div class="col s2">
+                    <button class="btn light-green controls" id="submit">Submit</button>
+                    <br/>
+                    <button class="btn red controls" id="clear">Clear</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s2"></div>
+                <div class="col s8  center-align">
+                    <div>
+                        <div class="row centeringSquares">
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                        </div>
+                        <div class="row centeringSquares">
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                        </div>
+                        <div class="row centeringSquares">
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                        </div>
+                        <div class="row centeringSquares">
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                            <div class="col square yellow valign-wrapper letterHolder mouseOver">
+                                <div class="center-block letter innerLetterHolder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2"></div>
+            </div>
+            <div class="row">
+                <div class="col s2"></div>
+                <div class="col s8 right-align">
+                    <button class="btn black" id="reset">SHUFFLE</button>
+                </div>
+                <div class="col s2"></div>
+            </div>
+
+        </div>
     </div>
+</div>
 
-    <!-- JavaScript -->
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous"></script>
+<!-- JavaScript -->
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <script src="https://cdn.rawgit.com/tannerwelsh/dcd33611c1bc615fd5a1c8cadc05d1b2/raw/470cde9d72927fef717f354b3ba3718a0aaabb99/basicWords.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="https://cdn.rawgit.com/tannerwelsh/dcd33611c1bc615fd5a1c8cadc05d1b2/raw/470cde9d72927fef717f354b3ba3718a0aaabb99/basicWords.js"
+        charset="utf-8"></script>
 
-    <script src="functions.js"></script>
-    <script src="bossggle.js"></script>
+<script src="functions.js"></script>
+<script src="bossggle.js"></script>
 
-    <script src="lib/wordList.min.js"></script>
-    <script src="lib/wordBank.min.js"></script>
+<script src="lib/wordList.min.js"></script>
+<script src="lib/wordBank.min.js"></script>
 
-    <script src="lib/moment.js"></script>
+<script src="lib/moment.js"></script>
 </body>
 </html>

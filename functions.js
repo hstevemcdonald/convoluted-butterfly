@@ -26,7 +26,9 @@ function setupLetters(disableReset) {
     }
     used[letter] = 1;
     blocks[idx].innerText = letter;
+    blocks[idx].setAttribute("index", idx);
   }
+  console.log(blocks);
 
   // clear game
   if (!disableReset) {
@@ -44,26 +46,39 @@ function setupListeners() {
     var io = innerElements[idx];
 
     o.onclick = function (event) {
-      var el = event.target || event.srcElement;
-      var letter = el.firstChild.innerText.replace(/[^\x00-\x7F]/g, "");
+      var element = event.target || event.srcElement;
+      var letter, index, setOuterElement = false, pickElement = element;
 
-      if (checkLen(playWord)) {
-        el.classList.remove("yellow");
-        el.classList.add("orange");
+      if (!element.getAttribute("index")) {
+        pickElement = element.getElementsByClassName("innerLetterHolder")[0];
+      } else {
+        setOuterElement = true;
+      }
+
+      index = pickElement.getAttribute("index");
+      letter = pickElement.textContent.replace(/[^\x00-\x7F]/g, "");
+
+      if (checkLen(playWord) && isAdjacentTo(index)) {
+        element.classList.remove("yellow");
+        element.classList.add("orange");
+        if (setOuterElement)
+        {
+          element.parentNode.classList.remove("yellow");
+          element.parentNode.classList.add("orange");
+        } else {
+          pickElement.classList.remove("yellow");
+          pickElement.classList.add("orange");
+        }
         setLetter(letter);
       }
     }
+  }
 
-    io.onclick = function (event) {
-      var el = event.target || event.srcElement;
-      var letter = el.innerText.replace(/[^\x00-\x7F]/g, "");
-
-      if (checkLen(playWord)) {
-        el.parentNode.classList.remove("yellow");
-        el.parentNode.classList.add("orange");
-        setLetter(letter);
-      }
-    }
+  // check if letter is adjacent
+  function isAdjacentTo(index)
+  {
+    console.log("check if adjacent to " + index);
+    return true;
   }
 
   // set letter
@@ -90,6 +105,8 @@ function clearWord() {
     var el = elements[idx];
     el.parentNode.classList.remove("orange");
     el.parentNode.classList.add("yellow");
+    el.classList.remove("orange");
+    el.classList.add("yellow");
   }
   var playWordEl = document.getElementById("playWord");
   playWordEl.innerText = "";

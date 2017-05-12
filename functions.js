@@ -1,8 +1,9 @@
 var points = 0;
 var playWordPoints = 0;
-var timeLeft = 60;
+var timeLeft, setTimeLeft = 60;
 var timer;
 var maxWordLength = 10;
+var letterStack = {};
 
 /**
  * Functions for Bossggle
@@ -28,12 +29,12 @@ function setupLetters(disableReset) {
     blocks[idx].innerText = letter;
     blocks[idx].setAttribute("index", idx);
   }
-  console.log(blocks);
 
   // clear game
   if (!disableReset) {
     $(".wordAndScoreRow:not(:last)").remove();
     $("#score").text(0);
+    timeLeft = setTimeLeft;
   }
 }
 
@@ -55,10 +56,11 @@ function setupListeners() {
         setOuterElement = true;
       }
 
-      index = pickElement.getAttribute("index");
+      // determine index and letter
+      index = parseInt(pickElement.getAttribute("index"));
       letter = pickElement.textContent.replace(/[^\x00-\x7F]/g, "");
 
-      if (checkLen(playWord) && isAdjacentTo(index)) {
+      if (checkLen(playWord) && hasAdjacentLetter(index)) {
         element.classList.remove("yellow");
         element.classList.add("orange");
         if (setOuterElement)
@@ -69,16 +71,58 @@ function setupListeners() {
           pickElement.classList.remove("yellow");
           pickElement.classList.add("orange");
         }
+
+        // set letter index as used
+        letterStack[index] = 1;
+
+        // set letter to word
         setLetter(letter);
       }
     }
   }
 
   // check if letter is adjacent
-  function isAdjacentTo(index)
+  function hasAdjacentLetter(newIndex)
   {
-    console.log("check if adjacent to " + index);
-    return true;
+    if (Object.keys(letterStack).length == 0) {
+      return true;
+    }
+
+    var checkPosition;
+    var result = false;
+    var minMaxCheck = [3, 4, 5];
+
+    minMaxCheck.map(function (check) {
+      checkPosition = (newIndex - check);
+      result = ((checkPosition > 1) && (row(newIndex) == row(checkPosition) + 1) && (letterStack[checkPosition])) ? true : result;
+      checkPosition = (newIndex + check);
+      result = ((checkPosition < 16) && (row(newIndex) == row(checkPosition) - 1)  && (letterStack[checkPosition])) ? true : result;
+      checkPosition = (newIndex - 1);
+      result = ((checkPosition > 1) && isSameRow(checkPosition, newIndex) && (letterStack[checkPosition])) ? true : result;
+      checkPosition = (newIndex + 1);
+      result = ((checkPosition > 1) && isSameRow(checkPosition, newIndex) && (letterStack[checkPosition])) ? true : result;
+    })
+
+    console.log("check if " + newIndex + " has a valid adjacent number - result is " + result);
+    console.log(letterStack);
+
+    if (!result)
+    {
+      Materialize.toast("Letter must be adjacent to existing letter.", 3000);
+    }
+
+    // return row of letter
+    function row(numA)
+    {
+      return Math.floor(numA/4);
+    }
+
+    // compare rows of two letters
+    function isSameRow(numA, numB)
+    {
+      return Math.floor(numA/4) == Math.floor(numB/4);
+    }
+    return result;
   }
 
   // set letter
@@ -111,8 +155,7 @@ function clearWord() {
   var playWordEl = document.getElementById("playWord");
   playWordEl.innerText = "";
   playWord = "";
-
-
+  letterStack = {};
 }
 
 var givePoints = function () {
@@ -142,7 +185,7 @@ function startTimer() {
   timer = setInterval(function () {
     timeLeft--;
     showTime(timeLeft);
-    if (timeLeft == 0) {
+    if (timeLeft <= 0) {
       clearInterval(timer);
       $("#scoreResult").text(points);
       $("#rightColumnGame").fadeOut("slow");

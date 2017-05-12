@@ -102,10 +102,7 @@ function setupListeners() {
       checkPosition = (newIndex + 1);
       result = ((checkPosition > 1) && isSameRow(checkPosition, newIndex) && (letterStack[checkPosition])) ? true : result;
     })
-
-    console.log("check if " + newIndex + " has a valid adjacent number - result is " + result);
-    console.log(letterStack);
-
+    
     if (!result)
     {
       Materialize.toast("Letter must be adjacent to existing letter.", 3000);

@@ -1,7 +1,7 @@
 .square {
-	height: 6em;
-	width: 6em;
-	margin: .3em;
+    height: 6em;
+    width: 6em;
+    margin: .3em;
 }
 
 .controls {
@@ -9,45 +9,45 @@
 }
 
 .letter {
-	font-size: 2em;
-	font-weight: bold;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .playRowHeight {
-	min-height: 145px;
+    min-height: 145px;
 }
 
 .fullHeight {
-	height: 100vh;
+    height: 100vh;
 }
 
 .centeringSquares {
-	width: 26.4em;
-	margin-bottom: 0;
+    width: 26.4em;
+    margin-bottom: 0;
 }
 
 .noMargin {
-	margin: 0px;
+    margin: 0px;
 }
 
 .col .noPadding {
-	padding: 0px;
+    padding: 0px;
 }
 
 .labelPadding {
-	padding: 6px;
-	border-radius: 4px;
+    padding: 6px;
+    border-radius: 4px;
 }
 
 .mouseOver {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .hide {
-	display: none;
+    display: none;
 }
 
 #codeLink {
-	position: absolute;
-	bottom: 30px;
+    position: absolute;
+    bottom: 30px;
 }

@@ -4,21 +4,22 @@ var timeLeft, setTimeLeft = 60;
 var timer;
 var maxWordLength = 10;
 var letterStack = {};
+var lastLetterPosition = null;
 
 /**
  * Functions for Bossggle
  */
 
 function getLetter() {
-  var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return letters.substr(Math.random() * letters.length, 1);
 }
 
 // setup letter grid
 function setupLetters(disableReset) {
   var used = [];
-  var str = "";
-  var blocks = document.getElementsByClassName("letter");
+  var str = '';
+  var blocks = document.getElementsByClassName('letter');
 
   for (var idx = 0; idx < 16; idx++) {
     var letter = getLetter();
@@ -27,63 +28,67 @@ function setupLetters(disableReset) {
     }
     used[letter] = 1;
     blocks[idx].innerText = letter;
-    blocks[idx].setAttribute("index", idx);
+    blocks[idx].setAttribute('index', idx);
   }
 
   // clear game
   if (!disableReset) {
-    $(".wordAndScoreRow:not(:last)").remove();
-    $("#score").text(0);
+    $('.wordAndScoreRow:not(:last)').remove();
+    $('#score').text(0);
     timeLeft = setTimeLeft;
   }
 }
 
 // listen and update word in play
 function setupListeners() {
-  var elements = document.getElementsByClassName("letterHolder");
-  var innerElements = document.getElementsByClassName("innerLetterHolder");
+  var elements = document.getElementsByClassName('letterHolder');
+  var innerElements = document.getElementsByClassName('innerLetterHolder');
   for (var idx = 0; idx < elements.length; idx++) {
     var o = elements[idx];
     var io = innerElements[idx];
 
-    o.onclick = function (event) {
+    o.onclick = function(event) {
       var element = event.target || event.srcElement;
       var letter, index, setOuterElement = false, pickElement = element;
 
-      if (!element.getAttribute("index")) {
-        pickElement = element.getElementsByClassName("innerLetterHolder")[0];
+      if (!element.getAttribute('index')) {
+        pickElement = element.getElementsByClassName('innerLetterHolder')[0];
       } else {
         setOuterElement = true;
       }
 
       // determine index and letter
-      index = parseInt(pickElement.getAttribute("index"));
-      letter = pickElement.textContent.replace(/[^\x00-\x7F]/g, "");
+      index = parseInt(pickElement.getAttribute('index'));
+      letter = pickElement.textContent.replace(/[^\x00-\x7F]/g, '');
+
+      if(letterStack[index])
+      {
+        Materialize.toast('You have already selected that letter.', 3000);
+        return;
+      }
 
       if (checkLen(playWord) && hasAdjacentLetter(index)) {
-        element.classList.remove("yellow");
-        element.classList.add("orange");
-        if (setOuterElement)
-        {
-          element.parentNode.classList.remove("yellow");
-          element.parentNode.classList.add("orange");
+        element.classList.remove('yellow');
+        element.classList.add('orange');
+        if (setOuterElement) {
+          element.parentNode.classList.remove('yellow');
+          element.parentNode.classList.add('orange');
         } else {
-          pickElement.classList.remove("yellow");
-          pickElement.classList.add("orange");
+          pickElement.classList.remove('yellow');
+          pickElement.classList.add('orange');
         }
 
         // set letter index as used
         letterStack[index] = 1;
-
+        lastLetterPosition = index;
         // set letter to word
         setLetter(letter);
       }
-    }
+    };
   }
 
   // check if letter is adjacent
-  function hasAdjacentLetter(newIndex)
-  {
+  function hasAdjacentLetter(newIndex) {
     if (Object.keys(letterStack).length == 0) {
       return true;
     }
@@ -92,40 +97,51 @@ function setupListeners() {
     var result = false;
     var minMaxCheck = [3, 4, 5];
 
-    minMaxCheck.map(function (check) {
+    minMaxCheck.map(function(check) {
       checkPosition = (newIndex - check);
-      result = ((checkPosition > 1) && (row(newIndex) == row(checkPosition) + 1) && (letterStack[checkPosition])) ? true : result;
+      result = ((checkPosition > 0) &&
+      (row(newIndex) == row(checkPosition) + 1) && (letterStack[checkPosition]) && (checkPosition == lastLetterPosition))
+          ? true
+          : result;
       checkPosition = (newIndex + check);
-      result = ((checkPosition < 16) && (row(newIndex) == row(checkPosition) - 1)  && (letterStack[checkPosition])) ? true : result;
-      checkPosition = (newIndex - 1);
-      result = ((checkPosition > 1) && isSameRow(checkPosition, newIndex) && (letterStack[checkPosition])) ? true : result;
-      checkPosition = (newIndex + 1);
-      result = ((checkPosition > 1) && isSameRow(checkPosition, newIndex) && (letterStack[checkPosition])) ? true : result;
-    })
-    
-    if (!result)
-    {
-      Materialize.toast("Letter must be adjacent to existing letter.", 3000);
+      result = ((checkPosition < 16) &&
+      (row(newIndex) == row(checkPosition) - 1) && (letterStack[checkPosition]) && (checkPosition == lastLetterPosition))
+          ? true
+          : result;
+    });
+
+    checkPosition = (newIndex - 1);
+    result = ((checkPosition >= 0) && isSameRow(checkPosition, newIndex) &&
+    (letterStack[checkPosition]) && (checkPosition == lastLetterPosition)) ? true : result;
+    //console.log("Does " + newIndex + " have a letter at position (-" + 1 + ") " +  checkPosition + "/" + lastLetterPosition + " ?? " + letterStack[checkPosition] + " = " + result);
+
+    checkPosition = (newIndex + 1);
+    result = ((checkPosition >= 0) && isSameRow(checkPosition, newIndex) &&
+    (letterStack[checkPosition]) && (checkPosition == lastLetterPosition)) ? true : result;
+    //console.log("Does " + newIndex + " have a letter at position (+" + 1 + ") " +  checkPosition + "/" + lastLetterPosition + " ?? " + letterStack[checkPosition] + " = " + result);
+    //console.log("check if " + newIndex + " has a valid adjacent number - result is " + result);
+
+    if (!result) {
+      Materialize.toast('Letter must be adjacent to previous letter.', 3000);
     }
 
     // return row of letter
-    function row(numA)
-    {
-      return Math.floor(numA/4);
+    function row(numA) {
+      return Math.floor(numA / 4);
     }
 
     // compare rows of two letters
-    function isSameRow(numA, numB)
-    {
-      return Math.floor(numA/4) == Math.floor(numB/4);
+    function isSameRow(numA, numB) {
+      return Math.floor(numA / 4) == Math.floor(numB / 4);
     }
+
     return result;
   }
 
   // set letter
   function setLetter(letter) {
     playWord += letter;
-    var playWordEl = document.getElementById("playWord");
+    var playWordEl = document.getElementById('playWord');
     playWordEl.innerText = playWord;
   }
 
@@ -133,7 +149,7 @@ function setupListeners() {
   function checkLen(word) {
     var result = true;
     if (word && word.length >= maxWordLength) {
-      Materialize.toast("Words can only be 10 letters in length.", 3000);
+      Materialize.toast('Words can only be 10 letters in length.', 3000);
       result = false;
     }
     return result;
@@ -141,37 +157,38 @@ function setupListeners() {
 }
 
 function clearWord() {
-  var elements = document.getElementsByClassName("letter");
+  var elements = document.getElementsByClassName('letter');
   for (var idx = 0; idx < elements.length; idx++) {
     var el = elements[idx];
-    el.parentNode.classList.remove("orange");
-    el.parentNode.classList.add("yellow");
-    el.classList.remove("orange");
-    el.classList.add("yellow");
+    el.parentNode.classList.remove('orange');
+    el.parentNode.classList.add('yellow');
+    el.classList.remove('orange');
+    el.classList.add('yellow');
   }
-  var playWordEl = document.getElementById("playWord");
-  playWordEl.innerText = "";
-  playWord = "";
+  var playWordEl = document.getElementById('playWord');
+  playWordEl.innerText = '';
+  playWord = '';
   letterStack = {};
+  lastLetterPosition = null;
 }
 
-var givePoints = function () {
+var givePoints = function() {
   playWordPoints = 9 * playWord.length;
   points += playWordPoints;
-  $("#score").html(points);
-}
+  $('#score').html(points);
+};
 
-var addWord = function () {
+var addWord = function() {
   //clone row
   //add current word to word column and score to score column - 1 row
   //prepend these
   //show
-  var element = $(".wordAndScoreRow:last").clone();
-  element.removeClass("hide");
-  element.find(".word").html(playWord);
-  element.find(".wordScore").html(playWordPoints);
-  $("#wordList").prepend(element);
-}
+  var element = $('.wordAndScoreRow:last').clone();
+  element.removeClass('hide');
+  element.find('.word').html(playWord);
+  element.find('.wordScore').html(playWordPoints);
+  $('#wordList').prepend(element);
+};
 
 // start/restart timer
 
@@ -179,19 +196,19 @@ function startTimer() {
   if (timer) {
     clearInterval(timer);
   }
-  timer = setInterval(function () {
+  timer = setInterval(function() {
     timeLeft--;
     showTime(timeLeft);
     if (timeLeft <= 0) {
       clearInterval(timer);
-      $("#scoreResult").text(points);
-      $("#rightColumnGame").fadeOut("slow");
-      $("#rightColumnTimeUp").removeClass("hide").fadeIn("slow");
+      $('#scoreResult').text(points);
+      $('#rightColumnGame').fadeOut('slow');
+      $('#rightColumnTimeUp').removeClass('hide').fadeIn('slow');
     }
-  }, 1000)
+  }, 1000);
 }
 
 function showTime(t) {
-  $("#timerTime").html(moment(t, "ss").format("m:ss"));
+  $('#timerTime').html(moment(t, 'ss').format('m:ss'));
 }
 

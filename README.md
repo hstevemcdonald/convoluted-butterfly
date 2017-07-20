@@ -1,8 +1,12 @@
 # convoluted-butterfly
 
+#### Bossggle Word Game for Learners Guild
+
+To play, visit the following url:
+
 https://eastnorthwest.github.io/convoluted-butterfly/
 
-Bossggle Word Game for Learners Guild
+#### Specifications:
 
 Stage 1
 

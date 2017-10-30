@@ -9,7 +9,6 @@
 <div class="row fullHeight">
     <div class="col s3 grey lighten-4 fullHeight" id="left">
         <h2>Bossggle</h2>
-        <p class="grey-text lighten-text-1">Make words by clicking the letters! Only dictionary words count.</p>
         <div class="row noMargin">
             <div class="col s9 noPadding">
                 <span class="grey-text lighten-text-2">Score</span>
@@ -44,6 +43,8 @@
         <div id="rightColumnStart" class="valign-wrapper fullHeight">
             <div class="row">
                 <div class="col s12 center-align">
+                  <h5 class="purple-text labelPadding">Make words by clicking the letters. Only dictionary words count!
+                  </h5>
                     <button id="startButton" class="btn white-text green">START!</button>
                 </div>
             </div>
@@ -63,9 +64,7 @@
                 <div class="col s2"><h4 id="timerTime"></h4></div>
                 <div class="col s8 center-align"><h2 id="playWord"></h2></div>
                 <div class="col s2">
-                    <button class="btn light-green controls" id="submit">Submit</button>
-                    <br/>
-                    <button class="btn red controls" id="clear">Clear</button>
+                    <h4></h4><button class="btn black" id="reset">Shuffle</button></h4>
                 </div>
             </div>
             <div class="row">
@@ -135,7 +134,10 @@
             <div class="row">
                 <div class="col s2"></div>
                 <div class="col s8 right-align">
-                    <button class="btn black" id="reset">SHUFFLE</button>
+                    <button class="btn light-green controls" id="submit">Submit</button>
+                    <br/>
+                    <br />
+                    <button class="btn red controls" id="clear">Clear Word</button>
                 </div>
                 <div class="col s2"></div>
             </div>

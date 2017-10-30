@@ -1,12 +1,15 @@
 # convoluted-butterfly
 
-#### Bossggle Word Game for Learners Guild
+#### A 1-player Boggle-like Word Game for Learners Guild
 
 To play, visit the following url:
 
 https://eastnorthwest.github.io/convoluted-butterfly/
 
-#### Specifications:
+Built by:
+Steve McDonald and Danielle Gellis
+
+#### Project Specifications:
 
 Stage 1
 

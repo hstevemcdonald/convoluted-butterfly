@@ -67,7 +67,7 @@ function setupListeners() {
         return;
       }
 
-      if (checkLen(playWord) && hasAdjacentLetter(index)) {
+      if (checkLen(playWord) && hasAdjacentLetter(lastLetterPosition, index)) {
         element.classList.remove('yellow');
         element.classList.add('orange');
         if (setOuterElement) {
@@ -87,56 +87,37 @@ function setupListeners() {
     };
   }
 
-  // check if letter is adjacent
-  function hasAdjacentLetter(newIndex) {
+  function hasAdjacentLetter(position1, position2) {
     if (Object.keys(letterStack).length == 0) {
       return true;
     }
-
-    var checkPosition;
-    var result = false;
-    var minMaxCheck = [3, 4, 5];
-
-    minMaxCheck.map(function(check) {
-      checkPosition = (newIndex - check);
-      result = ((checkPosition > 0) &&
-      (row(newIndex) == row(checkPosition) + 1) && (letterStack[checkPosition]) && (checkPosition == lastLetterPosition))
-          ? true
-          : result;
-      checkPosition = (newIndex + check);
-      result = ((checkPosition < 16) &&
-      (row(newIndex) == row(checkPosition) - 1) && (letterStack[checkPosition]) && (checkPosition == lastLetterPosition))
-          ? true
-          : result;
-    });
-
-    checkPosition = (newIndex - 1);
-    result = ((checkPosition >= 0) && isSameRow(checkPosition, newIndex) &&
-    (letterStack[checkPosition]) && (checkPosition == lastLetterPosition)) ? true : result;
-    //console.log("Does " + newIndex + " have a letter at position (-" + 1 + ") " +  checkPosition + "/" + lastLetterPosition + " ?? " + letterStack[checkPosition] + " = " + result);
-
-    checkPosition = (newIndex + 1);
-    result = ((checkPosition >= 0) && isSameRow(checkPosition, newIndex) &&
-    (letterStack[checkPosition]) && (checkPosition == lastLetterPosition)) ? true : result;
-    //console.log("Does " + newIndex + " have a letter at position (+" + 1 + ") " +  checkPosition + "/" + lastLetterPosition + " ?? " + letterStack[checkPosition] + " = " + result);
-    //console.log("check if " + newIndex + " has a valid adjacent number - result is " + result);
-
-    if (!result) {
+    const isAdjacent = checkIfAdjacent(position1, position2);
+    if (!isAdjacent) {
       Materialize.toast('Letter must be adjacent to previous letter.', 3000);
     }
-
-    // return row of letter
-    function row(numA) {
-      return Math.floor(numA / 4);
-    }
-
-    // compare rows of two letters
-    function isSameRow(numA, numB) {
-      return Math.floor(numA / 4) == Math.floor(numB / 4);
-    }
-
-    return result;
+    return isAdjacent;
   }
+
+  function checkIfAdjacent(position1, position2) {
+    const arrayofAdjacentPositions = makeArrayOfAdjacent(position1, position2);
+    return arrayofAdjacentPositions.includes(position2);
+  }
+
+  function makeArrayOfAdjacent(position1, position2) {
+    const adjacentPositions = [];
+
+    if(position1 % 4 === 0) {
+    adjacentPositions.push(position1+1, position1-3, position1-4, position1+4, position1+5)
+    } else if (position1 % 4 === 3) {
+    adjacentPositions.push(position1-1, position1+3, position1-4, position1+4, position1-5)
+    } else {
+    adjacentPositions.push(position1-1, position1+1, position1-3, position1+3, position1-4, position1+4, position1-5, position1+5)
+    }
+
+    return adjacentPositions;
+  }
+
+
 
   // set letter
   function setLetter(letter) {
@@ -211,4 +192,3 @@ function startTimer() {
 function showTime(t) {
   $('#timerTime').html(moment(t, 'ss').format('m:ss'));
 }
-

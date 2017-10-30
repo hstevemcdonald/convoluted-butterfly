@@ -16,6 +16,7 @@ $(document).ready(function() {
       clearWord();
     } else if (!Word_List.isInList(playWord)) {
       Materialize.toast('That\'s not a word we know :-(, try again!', 3000);
+      clearWord();
     } else {
       wordArray.push(playWord);
       givePoints();

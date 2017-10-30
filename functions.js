@@ -34,7 +34,8 @@ function setupLetters(disableReset) {
   // clear game
   if (!disableReset) {
     $('.wordAndScoreRow:not(:last)').remove();
-    $('#score').text(0);
+    points = 0;
+    $('#score').html(points);
     timeLeft = setTimeLeft;
   }
 }
